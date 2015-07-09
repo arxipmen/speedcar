@@ -6,10 +6,11 @@ import javax.swing.ImageIcon;
 
 public class Player {
 	
-	int speed			= 10;
+	int speed			= 30;
 	int acceleration	= 0;
 	int distance		= 0;
 	int layerOne		= 0;
+	int layerTwo		= 1200;
 	int x				= 30;
 	int y				= 280;
 	
@@ -18,6 +19,14 @@ public class Player {
 	
 	public void move() {
 		distance += speed;
-		layerOne -= speed;
+		
+		// Create loop road
+		if(layerTwo - speed <= 0) {
+			layerOne = 0;
+			layerTwo = 1200;
+		} else {
+			layerOne -= speed;
+			layerTwo -= speed;
+		}	
 	}
 }
