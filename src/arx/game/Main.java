@@ -9,7 +9,7 @@ public class Main {
 	 
 	 JFrame f = new  JFrame("Speed Car");
 	 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	 f.setSize(1000, 600);
+	 f.setSize(1000, 635);
 	 f.setLocationRelativeTo(null);
 	 f.add(new Road());
 	 f.setVisible(true);
