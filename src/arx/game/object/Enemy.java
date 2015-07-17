@@ -1,6 +1,7 @@
 package arx.game.object;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
@@ -21,5 +22,11 @@ public class Enemy {
 	}
 	public void move() {
 		x = x - road.carPlayer.speed + speedEnemy;
+	}
+	
+	public Rectangle getRect() {
+		int width = carEnemyImg.getWidth(null);
+		int height = carEnemyImg.getHeight(null);
+		return new Rectangle(x, y, width, height);
 	}
 }

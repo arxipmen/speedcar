@@ -13,17 +13,11 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class Road extends JPanel implements ActionListener, Runnable {
-	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		carPlayer.move();
-		repaint();
-		System.out.println(enemies.size());
-	}
 	
 	public Road() {
 		mainTimer.start();
@@ -37,6 +31,25 @@ public class Road extends JPanel implements ActionListener, Runnable {
 	Player carPlayer		= new Player();
 	Thread enemiesFactory	= new Thread(this);
 	List<Enemy> enemies		= new ArrayList<Enemy>();
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		carPlayer.move();
+		repaint();
+		testCollisionWithEnemies();
+	}
+	
+	public void testCollisionWithEnemies() {
+		Iterator<Enemy> i = enemies.iterator();
+		while(i.hasNext()) {
+			Enemy enemy = i.next();
+			//check collision
+			if(carPlayer.getRect().intersects(enemy.getRect())) {
+				JOptionPane.showMessageDialog(null, "Вы проиграли");
+				System.exit(ABORT);
+			}
+		}
+	}
 	
 	public void run() {
 		while(true) {

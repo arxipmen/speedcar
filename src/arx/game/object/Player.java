@@ -1,14 +1,13 @@
 package arx.game.object;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 public class Player {
-	public static final int MAX_SPEED	= 100;
+	public static final int MAX_SPEED	= 50;
 	public static final int MARGIN_TOP	= 100;
 	public static final int MARGIN_DOWN	= 450;
 	
@@ -21,8 +20,7 @@ public class Player {
 	int y				= 280;
 	int changeY			= 0;
 	int changeX			= 0;
-	
-	
+		
 	Image carImg = new ImageIcon("res/car.png").getImage();
 	
 	public void move() {
@@ -41,15 +39,21 @@ public class Player {
 			layerOne -= speed;
 			layerTwo -= speed;
 		}	
+	}	
+	
+	public Rectangle getRect() {
+		int width = carImg.getWidth(null);
+		int height = carImg.getHeight(null);
+		return new Rectangle(x, y, width, height);
 	}
 	
 	public void keyPressed(KeyEvent e){
 		int key = e.getKeyCode();
 		if(key == KeyEvent.VK_RIGHT) {
-			acceleration = 3;
+			acceleration = 2;
 		}
 		if(key == KeyEvent.VK_LEFT) {
-			acceleration = -3;
+			acceleration = -2;
 		}
 		if(key == KeyEvent.VK_UP) {
 			changeY = 5;
